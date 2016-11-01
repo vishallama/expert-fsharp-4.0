@@ -14,3 +14,9 @@ printfn "Capital of %s is %s" "USA" (capitals.["USA"])
 
 for countryCapital in capitals do
     printfn "%s has capital %s" countryCapital.Key countryCapital.Value
+
+// Search a key in a dictionary
+let (a, b) = capitals.TryGetValue("Australia")
+printfn "%b %s" a b
+let (c, d) = capitals.TryGetValue("USA")
+printfn "%b %s" c d
