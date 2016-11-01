@@ -29,3 +29,13 @@ let httpViaTryFinally(url : string) =
         html
     finally
         response.Close()
+
+// Close and dispose off resources by using a use binding, if the resource
+// implements IDisposable.
+let httpViaUseBinding(url : string) =
+    let request = System.Net.WebRequest.Create(url)
+    use response = request.GetResponse()
+    let stream = response.GetResponseStream()
+    let reader = new StreamReader(stream)
+    let html = reader.ReadToEnd()
+    html
