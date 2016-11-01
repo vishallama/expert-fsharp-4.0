@@ -1,4 +1,5 @@
 open System.Collections.Generic
+open FSharp.Collections
 
 let capitals = new Dictionary<string, string>(HashIdentity.Structural)
 
@@ -20,3 +21,8 @@ let (a, b) = capitals.TryGetValue("Australia")
 printfn "%b %s" a b
 let (c, d) = capitals.TryGetValue("USA")
 printfn "%b %s" c d
+
+let sparesMap = new Dictionary<(int * int), float>()
+sparesMap.[(0, 2)] <- 4.0
+sparesMap.[(1021, 1847)] <- 9.0
+printfn "%s" (sparesMap.Keys.ToString())
