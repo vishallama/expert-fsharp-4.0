@@ -1,3 +1,5 @@
+open System.Collections.Generic
+
 let isWord (words : string list) =
     let wordTable = Set.ofList words
     fun w -> wordTable.Contains(w)
@@ -35,3 +37,10 @@ let isWordSlow3 (words : string list) (word : string) =
     wordTable.Contains(word)
 
 let isCapitalSlow3 word = isWordSlow3 capitals word
+
+// Below is a safe use of a mutable data structure, because we don't mutate
+// the data structure after creating it, and we don't reveal it to the
+// outside world.
+let isWord' (words : string list) =
+    let wordTable = HashSet<string>(words)
+    fun word -> wordTable.Contains word
