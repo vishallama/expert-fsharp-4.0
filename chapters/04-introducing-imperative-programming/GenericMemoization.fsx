@@ -32,3 +32,13 @@ printfn "Computing some factorial numbers"
 printfn "%A" (time(fun () -> factFast 5).ToString())
 printfn "%A" (time(fun () -> factFast 10).ToString())
 printfn "%A" (time(fun () -> factFast 12).ToString())
+
+// This function leads to a fresh memoization table being allocated each
+// time the function is called.
+let rec fibNotFast n =
+    memoize (fun n -> if n <= 2 then 1 else fibNotFast (n-1) + fibNotFast (n-2)) n
+
+printfn "Computing some Fibonacci numbers using a slower method"
+printfn "%A" (time(fun () -> fibNotFast 10).ToString())
+printfn "%A" (time(fun () -> fibNotFast 20).ToString())
+printfn "%A" (time(fun () -> fibNotFast 30).ToString())
