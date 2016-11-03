@@ -23,6 +23,12 @@ let memoizeAndPermitDiscard f =
 
 #nowarn "40"    // do not warn on recursive computed objects and functions
 
+// The implementation of memoize here is not thread safe, because it doesn't
+// lock the internal lookup table during reading and writing. This is fine
+// if the computed function is used only from at most one thread at a time,
+// but in a multithreaded application, we need to use strategies that utilize
+// internal tables protectec by locks, such as .NET ReaderWriterLock.
+
 let rec fibFast =
     memoizeAndPermitDiscard (fun n ->
         printfn "computting fibFast %d" n
