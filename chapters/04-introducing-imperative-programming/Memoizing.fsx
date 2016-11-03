@@ -17,9 +17,13 @@ let fibFast =
              result
     fun n -> fibCached n
 
-printfn "Fibonacci(%d) = %d" 1 (fibFast(1))
-printfn "Fibonacci(%d) = %d" 2 (fibFast(2))
-printfn "Fibonacci(%d) = %d" 3 (fibFast(3))
-printfn "Fibonacci(%d) = %d" 4 (fibFast(4))
-printfn "Fibonacci(%d) = %d" 10 (fibFast(10))
-printfn "Fibonacci(%d) = %d" 20 (fibFast(20))
+// Compute time required to compute fibFast for a specific value
+let time f =
+    let stopWatch = System.Diagnostics.Stopwatch.StartNew()
+    let result = f()
+    let finish = stopWatch.Stop()
+    (result, stopWatch.Elapsed.TotalMilliseconds |> sprintf "%f ms")
+
+printfn "%A" (time(fun () -> fibFast 10).ToString())
+printfn "%A" (time(fun () -> fibFast 20).ToString())
+printfn "%A" (time(fun () -> fibFast 30).ToString())
