@@ -20,6 +20,15 @@ let memoize (f : 'T -> 'U) =
 let rec fibFast =
     memoize (fun n -> if n <= 2 then 1 else fibFast (n-1) + fibFast (n-2))
 
+printfn "Computing some Fibocacci numbers"
 printfn "%A" (time(fun () -> fibFast 10).ToString())
 printfn "%A" (time(fun () -> fibFast 20).ToString())
 printfn "%A" (time(fun () -> fibFast 30).ToString())
+
+let rec factFast =
+    memoize (fun n -> if n <= 1 then 1 else n * factFast (n-1))
+
+printfn "Computing some factorial numbers"
+printfn "%A" (time(fun () -> factFast 5).ToString())
+printfn "%A" (time(fun () -> factFast 10).ToString())
+printfn "%A" (time(fun () -> factFast 12).ToString())
