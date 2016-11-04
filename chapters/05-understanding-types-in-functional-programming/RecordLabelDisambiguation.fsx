@@ -14,4 +14,4 @@ let distance p = sqrt (p.X * p.X + p.Y * p.Y)
 // record values with explicit type annotation for the whole record
 let alice =
     ({ Name = "Alice"
-       DateofBirth = new System.DateTime(1970, 07, 23)} : Person)
+       DateofBirth = new System.DateTime(1970, 09, 22)} : Person)
