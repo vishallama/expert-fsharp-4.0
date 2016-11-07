@@ -1,6 +1,5 @@
 /// A Vector2D type with length precomputation via a class type
 type Vector2D(dx : float, dy : float) =
-
     let len = sqrt (dx * dx + dy * dy)
 
     /// Get the X component of the vector
