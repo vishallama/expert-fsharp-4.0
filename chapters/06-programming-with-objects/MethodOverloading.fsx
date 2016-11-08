@@ -21,3 +21,17 @@ type Interval(lo, hi) =
     /// Return the smallest interval that covers all the intervals
     static member Span(ranges : seq<Interval>) =
         Seq.fold (fun r1 r2 -> Interval.Span(r1, r2)) Interval.Empty ranges
+
+/// Concrete type with method overloading on the types of arguments.
+type Vector =
+    { DX : float; DY : float }
+    member v.Length = sqrt (v.DX * v.DX + v.DY * v.DY)
+
+type Point =
+    { X : float; Y : float }
+
+    static member (-) (p1 : Point, p2 : Point) =
+        { DX = p1.X - p2.X; DY = p1.Y - p2.Y }
+
+    static member (-) (p : Point, v : Vector) =
+        { X = p.X - v.DX; Y = p.Y - v.DY }
